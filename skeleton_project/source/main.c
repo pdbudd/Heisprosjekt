@@ -25,7 +25,7 @@ int main(){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
-    
+
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
@@ -34,7 +34,6 @@ int main(){
     while(1){
         if(hardware_read_stop_signal()){
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-            break;
         }
 
         /* Code block that makes the elevator go up when it reach the botton*/
