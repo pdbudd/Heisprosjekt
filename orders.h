@@ -1,7 +1,8 @@
 
+int Queue[HARDWARE_NUMBER_OF_FLOORS];
 
-void placeorder();
+void placeorder(int floor);
 
 void clear_all_orders();
 
-void delete_order();
+void delete_order(int order);

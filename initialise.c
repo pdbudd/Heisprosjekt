@@ -1,6 +1,6 @@
 ##include "initialise.h"
 
-initialise();
+int initialise();
 {
     int initialised = 0;
 
@@ -8,7 +8,7 @@ initialise();
 
     while (initialised == 0)
     {
-      for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS; f++)
+      for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS-1; f++)
       {
         if(hardware_read_floor_sensor(f))
         {
