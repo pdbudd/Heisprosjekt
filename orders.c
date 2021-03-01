@@ -5,21 +5,30 @@ void placeorder(int floor, HardwareOrder direction)
 {
   if (hardware_legal_floor(floor, direction))
   {
-    for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS*2-2; i++)
+    for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS-1; i++)
     {
-        if (Queue[i].order_floor == floor && Queue[i].order_type == direction)
+        if (hipri_Queue[i] == floor)
         {
           return;
         }
-        if (current_direction == direction)
+        if (direction == current_direction)
         {
-          if (current_direction == HARDWARE_MOVEMENT_UP && floor >= currentfloor || current_direction == HARDWARE_MOVEMENT_DOWN && floor <= currentfloor)
+          //checks to see if order goes into hi priority queue (pickup is on the way to current goal)
+          if(current_direction == HARDWARE_MOVEMENT_UP && floor < currentgoal || current_direction == HARDWARE_MOVEMENT_DOWN && floor > currentgoal)
           {
-            for (int n = 0; n < HARDWARE_NUMBER_OF_FLOORS*2-2; n++)
+            for (int n = 0; n < HARDWARE_NUMBER_OF_FLOORS-1; n++)
             {
-              hipri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2-n]=hipri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-1-n];
+              if(floor>hipri_Queue[n] && current_direction == HARDWARE_ORDER_DOWN)
+              {
+                hipri_Queue[n-1] = floor;
+                return;
+              }
+              if(floor<hipri_Queue[n] && current_direction == HARDWARE_ORDER_UP)
+              {
+                hipri_Queue[n-1] = floor;
+                return;
+              }
             }
-            hipri_Queue[0]=struct orders{floor,direction};
           }
         }
     }
