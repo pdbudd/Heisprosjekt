@@ -28,7 +28,7 @@ int main(){
         exit(1);
     }
     int currentfloor = initialise();
-    current_direction = HARDWARE_MOVEMENT_STOP
+    current_direction = HARDWARE_MOVEMENT_STOP;
 
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");

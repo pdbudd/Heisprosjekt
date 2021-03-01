@@ -3,7 +3,7 @@ struct [Orders]
 {
   int order_floor;
   HardwareOrder order_type;
-} orders;
+};
 
 struct Orders hipri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
 
