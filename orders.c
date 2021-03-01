@@ -13,7 +13,7 @@ void placeorder(int floor, HardwareOrder direction)
         }
         if (direction == current_direction)
         {
-          //checks to see if order goes into hi priority queue (pickup is on the way to current goal)
+          //Does this make sure that the target is within current path??
           if(current_direction == HARDWARE_MOVEMENT_UP && floor < currentgoal || current_direction == HARDWARE_MOVEMENT_DOWN && floor > currentgoal)
           {
             for (int n = 0; n < HARDWARE_NUMBER_OF_FLOORS-1; n++)
@@ -29,6 +29,10 @@ void placeorder(int floor, HardwareOrder direction)
                 return;
               }
             }
+          }
+          else
+          {
+            for ()
           }
         }
     }
