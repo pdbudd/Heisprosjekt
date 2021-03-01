@@ -4,8 +4,12 @@ struct [Orders]
   int order_floor;
   HardwareOrder order_type;
 };
+/**
+*
+*/
+int hipri_Queue[HARDWARE_NUMBER_OF_FLOORS-1];
 
-struct Orders hipri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
+int currentgoal;
 
 struct Orders lopri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
 
