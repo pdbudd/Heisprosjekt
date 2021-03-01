@@ -2,7 +2,15 @@
 #include <stdlib.h>
 #include <signal.h>
 #include "hardware.h"
+/**
+ * @file
+ * @brief Main program
+ */
 
+ /**
+  * @brief clear the order of lights
+
+  */
 static void clear_all_order_lights(){
     HardwareOrder order_types[3] = {
         HARDWARE_ORDER_UP,
@@ -18,14 +26,17 @@ static void clear_all_order_lights(){
     }
 }
 
-
+/**
+ * @brief the main program
+ 
+ */
 int main(){
     int error = hardware_init();
     if(error != 0){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
-    
+
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
