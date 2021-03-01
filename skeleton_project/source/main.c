@@ -18,6 +18,8 @@ static void clear_all_order_lights(){
     }
 }
 
+HardwareMovement current_direction;
+
 
 int main(){
     int error = hardware_init();
@@ -25,6 +27,8 @@ int main(){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
+    int currentfloor = initialise();
+    current_direction = HARDWARE_MOVEMENT_STOP
 
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");

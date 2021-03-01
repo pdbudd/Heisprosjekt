@@ -15,6 +15,7 @@ int initialise();
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             initialised = 1;
             hardware_command_floor_indicator_on(f);
+            currentfloor = f;
             return f;
         }
       }

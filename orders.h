@@ -1,11 +1,13 @@
 
 struct [Orders]
 {
-  int floor;
-  HardwareOrder order;
-} order;
+  int order_floor;
+  HardwareOrder order_type;
+} orders;
 
-struct Orders order Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
+struct Orders hipri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
+
+struct Orders lopri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
 
 void placeorder(int floor, HardwareOrder direction);
 
