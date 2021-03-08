@@ -7,7 +7,7 @@ int hipri_Queue[HARDWARE_NUMBER_OF_FLOORS-1];
 *Function that determines whether an order is serviced on the elevators current path
 *Either updates high priority queue array or places order in correct place of low priority array
 */
-void placeorder(int floor);
+void placeorder(int floor, HardwareOrder direction);
 
 /**
 * Updates High priority queue
