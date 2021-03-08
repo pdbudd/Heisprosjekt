@@ -5,100 +5,84 @@ void placeorder(int floor, HardwareOrder direction)
 {
   if (hardware_legal_floor(floor, direction))
   {
-    for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS-1; i++)
+    switch (direction)
     {
-        if (hipri_Queue[i] == floor)
-        {
-          return;
-        }
-        if (direction == current_direction)
-        {
-          //Does this make sure that the target is within current path??
-          if(current_direction == HARDWARE_MOVEMENT_UP && floor < currentgoal || current_direction == HARDWARE_MOVEMENT_DOWN && floor > currentgoal)
-          {
-            for (int n = 0; n < HARDWARE_NUMBER_OF_FLOORS-1; n++)
-            {
-              if(floor>hipri_Queue[n] && current_direction == HARDWARE_ORDER_DOWN)
-              {
-                hipri_Queue[n-1] = floor;
-                return;
-              }
-              if(floor<hipri_Queue[n] && current_direction == HARDWARE_ORDER_UP)
-              {
-                hipri_Queue[n-1] = floor;
-                return;
-              }
-            }
-          }
-          else
-          {
-            placeorder_lopri(floor,direction);
-        }
+      case HARDWARE_ORDER_UP:
+      up_orders[floor-1] = 1;
+      break;
+      case HARDWARE_ORDER_DOWN:
+      down_orders[floor-1] = 1;
+      break;
+      case HARDWARE_ORDER_INSIDE:
+      inside_orders[floor-1] = 1;
+      break;
+      default:
     }
+    return;
   }
   else
   {
-    return
+    return;
   }
 }
 
-void placeorder_lopri(int floor, HardwareOrder direction)
+void new_direction()
 {
-  size_t m = NELEMS(lopri_Queue);
-  for (size_t n = 0; n < m; n++)
+  switch (current_direction)
   {
-    if(direction == lopri_Queue[n].order_type && floor == lopri_Queue[n].order_floor)
+    case HARDWARE_MOVEMENT_UP:
+    delete_order(currentfloor);
+    for(int j = currentfloor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
     {
-      return;
-    }
-    if(direction == lopri_Queue[n].order_type)
-    {
-      if(direction == HARDWARE_ORDER_UP && floor < lopri_Queue[n].order_floor)
+      if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
       {
-        for (size_t u = m-1; u>= n; u--)
-        {
-          lopri_Queue[u] = lopri_Queue[u-1];
-        }
-        lopri_Queue[u] = {floor, direction};
-        return;
-      }
-      if(direction == HARDWARE_ORDER_DOWN && floor > lopri_Queue[n].order_floor)
-      {
-        for (size_t u = m-1; u>= n; u--)
-        {
-          lopri_Queue[u] = lopri_Queue[u-1];
-        }
-        lopri_Queue[u] = {floor, direction};
-        return;
+      hardware_command_movement(HARDWARE_MOVEMENT_UP);
+      break;
       }
     }
-  }
-}
-
-void hipri_Queue_update()
-{
-  size_t m = NELEMS(lopri_Queue);
-  int n = 0;
-  HardwareOrder h = lopri_Queue[0].order_type;
-  //gotta fix how this clears the lopri orders that are added to the hipri_Queue
-  //atm it is both iterating through lopri list and procedurally shrinking it leading to
-  //the indices getting out of whack.
-  while (lopri_Queue[n].order_type == lopri_Queue[n-1].ordertype)
-  {
-    hipri_Queue[n] = lopri_Queue[n].order_floor;
-    for (size_t j = 0; j < m-1; j++)
+    for(int k = 0; k < currentfloor +1; k++)
     {
-      lopri_Queue[j] =
+      if(up_orders[k] == 1 || down_orders[k] == 1 || inside_orders[k] == 1)
+      hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+      break;
     }
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    break;
+    case HARDWARE_MOVEMENT_DOWN:
+    delete_order(currentfloor);
+    for(int j = 0; j =< currentfloor; j++)
+    {
+      if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
+      {
+      hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+      break;
+      }
+    }
+    for(int k = currentfloor; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+    {
+      if(up_orders[k] == 1 || down_orders[k] == 1 || inside_orders[k] == 1)
+      hardware_command_movement(HARDWARE_MOVEMENT_UP);
+      break;
+    }
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    break;
+    default:
   }
 }
-
 void clear_all_orders()
 {
-
+  for(int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++)
+  {
+    up_orders[i] = 0;
+    down_orders[i] = 0;
+    inside_orders[i] = 0;
+  }
+  return;
 }
 
 void delete_order(int order)
 {
-
+  switch () {
+    case /* value */:
+  }
 }
