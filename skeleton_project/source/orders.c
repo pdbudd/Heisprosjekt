@@ -80,11 +80,3 @@ void clear_all_orders()
   }
   return;
 }
-
-//unfinished, unnecessary??
-void delete_order(int order)
-{
-  switch () {
-    case /* value */:
-  }
-}

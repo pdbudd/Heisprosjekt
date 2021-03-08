@@ -35,3 +35,23 @@ void order_served(int floor);
   new_direction();
   return;
 }
+
+void stop_button();
+{
+  clear_all_orders();
+  clear_all_order_lights();
+  hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+  hardware_command_stop_light(1);
+  while(hardware_read_stop_signal())
+  {
+    for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS; f++)
+    {
+      if(hardware_read_floor_sensor(f))
+      {
+          door_open();
+      }
+    }
+  }
+  hardware_command_stop_light(0);
+  return;
+}

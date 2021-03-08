@@ -9,7 +9,7 @@ int initialise();
 
     while (initialised == 0)
     {
-      for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS-1; f++)
+      for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS; f++)
       {
         if(hardware_read_floor_sensor(f))
         {
