@@ -1,5 +1,4 @@
 #include "orders.h"
-#define NELEMS(x) (sizeof(x)/sizeof(x[0]))
 
 void placeorder(int floor, HardwareOrder direction)
 {
@@ -26,6 +25,7 @@ void placeorder(int floor, HardwareOrder direction)
   }
 }
 
+//decide whether delete order function should be here or not
 void new_direction()
 {
   switch (current_direction)
@@ -68,6 +68,7 @@ void new_direction()
     break;
     default:
   }
+  return;
 }
 void clear_all_orders()
 {
@@ -80,6 +81,7 @@ void clear_all_orders()
   return;
 }
 
+//unfinished, unnecessary??
 void delete_order(int order)
 {
   switch () {

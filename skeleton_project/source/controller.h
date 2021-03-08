@@ -4,11 +4,6 @@
 void poll_buttons();
 
 /**
-*Sets order_type light at floor on
-*/
-void set_light(int floor, HardwareOrder order_type);
-
-/**
 *Clears order_type light at floor
 */
 void clear_light(int floor, HardwareOrder order_type);
@@ -18,3 +13,8 @@ void clear_light(int floor, HardwareOrder order_type);
 *elevator proceeds
 */
 void order_served(int floor);
+
+/**
+* clears all orders, lights, and opens the doors if the elevator is at a floor.
+*/
+void stop_button();
