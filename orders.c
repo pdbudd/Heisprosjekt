@@ -1,5 +1,5 @@
 #include "orders.h"
-#
+#define NELEMS(x) (sizeof(x)/sizeof(x[0]))
 
 void placeorder(int floor, HardwareOrder direction)
 {
@@ -32,8 +32,7 @@ void placeorder(int floor, HardwareOrder direction)
           }
           else
           {
-            for ()
-          }
+            placeorder_lopri(floor,direction);
         }
     }
   }
@@ -51,4 +50,13 @@ void clear_all_orders()
 void delete_order(int order)
 {
 
+}
+
+void placeorder_lopri(int floor, HardwareOrder direction)
+{
+  size_t m = NELEMS(lopri_Queue);
+  for (size_t n = 0; n < m; n++)
+  {
+
+  }
 }

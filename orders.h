@@ -31,6 +31,16 @@ struct Orders lopri_Queue[HARDWARE_NUMBER_OF_FLOORS*2-2];
 void placeorder(int floor, HardwareOrder direction);
 
 /**
+*function places order in lopri_Queue
+*/
+void placeorder_lopri(int floor, HardwareOrder direction)
+
+/**
+* Updates High priority queue
+*/
+void hipri_Queue_update();
+
+/**
 *Clears all orders
 */
 void clear_all_orders();
