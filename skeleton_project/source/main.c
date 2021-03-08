@@ -4,6 +4,7 @@
 #include "hardware.h"
 #include "orders.h"
 #include "initialise.h"
+#include "controller.h"
 
 static void clear_all_order_lights(){
     HardwareOrder order_types[3] = {
@@ -42,22 +43,7 @@ int main(){
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
         }
 
-        /* Code block that makes the elevator go up when it reach the botton*/
-        if(hardware_read_floor_sensor(0)){
-            hardware_command_movement(HARDWARE_MOVEMENT_UP);
-        }
-
-        /* Code block that makes the elevator go down when it reach the top floor*/
-        if(hardware_read_floor_sensor(HARDWARE_NUMBER_OF_FLOORS - 1)){
-            hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-        }
-
-        /* All buttons must be polled, like this: */
-        for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
-            if(hardware_read_floor_sensor(f)){
-                hardware_command_floor_indicator_on(f);
-            }
-        }
+        poll_buttons();
 
         /* Lights are set and cleared like this: */
         for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
