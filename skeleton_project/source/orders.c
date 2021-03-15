@@ -31,7 +31,6 @@ void new_direction()
   switch (current_direction)
   {
     case HARDWARE_MOVEMENT_UP:
-    delete_order(currentfloor);
     for(int j = currentfloor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
     {
       if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
@@ -49,7 +48,6 @@ void new_direction()
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     break;
     case HARDWARE_MOVEMENT_DOWN:
-    delete_order(currentfloor);
     for(int j = 0; j =< currentfloor; j++)
     {
       if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
