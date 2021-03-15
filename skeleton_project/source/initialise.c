@@ -13,9 +13,9 @@ int initialise()
         {
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             hardware_command_floor_indicator_on(f);
-            break;
+            return f;
         }
       }
     }
-    return f;
+    return;
 }
