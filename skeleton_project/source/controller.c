@@ -1,4 +1,6 @@
+#include <stdio>
 #include "controller.h"
+#include "hardware.h"
 
 void poll_buttons();
 for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)

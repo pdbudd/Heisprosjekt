@@ -1,7 +1,7 @@
-##include "initialise.h"
+#include "initialise.h"
 
 //returns the integer floor where the lift is at the end of initialisation
-int initialise();
+int initialise()
 {
     int initialised = 0;
 

@@ -22,6 +22,7 @@ static void clear_all_order_lights(){
 }
 
 HardwareMovement current_direction;
+int currentfloor;
 
 
 int main(){
@@ -44,6 +45,8 @@ int main(){
         }
 
         poll_buttons();
+        placeorder(1, HARDWARE_ORDER_UP);
+        
 
         /* Lights are set and cleared like this: */
         for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){

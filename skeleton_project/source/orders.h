@@ -8,12 +8,6 @@ int hipri_Queue[HARDWARE_NUMBER_OF_FLOORS-1];
 *Either updates high priority queue array or places order in correct place of low priority array
 */
 void placeorder(int floor, HardwareOrder direction);
-
-/**
-* Updates High priority queue
-*/
-void hipri_Queue_update();
-
 /**
 *Clears all orders
 */
