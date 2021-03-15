@@ -1,8 +1,9 @@
 #include "orders.h"
+#include "hardware.h"
 
 void placeorder(int floor, HardwareOrder direction)
 {
-  if (hardware_legal_floor(floor, direction))
+  if (1)
   {
     switch (direction)
     {
@@ -15,7 +16,7 @@ void placeorder(int floor, HardwareOrder direction)
       case HARDWARE_ORDER_INSIDE:
       inside_orders[floor-1] = 1;
       break;
-      default:
+      default:;
     }
     return;
   }
@@ -48,7 +49,7 @@ void new_direction()
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     break;
     case HARDWARE_MOVEMENT_DOWN:
-    for(int j = 0; j =< currentfloor; j++)
+    for(int j = 0; j <= currentfloor; j++)
     {
       if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
       {
@@ -64,10 +65,11 @@ void new_direction()
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     break;
-    default:
+    default:;
   }
   return;
 }
+
 void clear_all_orders()
 {
   for(int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++)

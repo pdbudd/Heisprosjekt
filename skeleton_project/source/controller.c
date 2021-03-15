@@ -1,34 +1,36 @@
-#include <stdio>
 #include "controller.h"
 #include "hardware.h"
+#include "orders.h"
 
-void poll_buttons();
-for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+void poll_buttons()
 {
-  if(hardware_read_order(k,HARDWARE_ORDER_UP))
+  for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)
   {
-    placeorder(k,HARDWARE_ORDER_UP);
+    if(hardware_read_order(k,HARDWARE_ORDER_UP))
+    {
+      placeorder(k,HARDWARE_ORDER_UP);
+    }
+    if(hardware_read_order(k,HARDWARE_ORDER_DOWN))
+    {
+      placeorder(k,HARDWARE_ORDER_DOWN);
+    }
+    if(hardware_read_order(k,HARDWARE_ORDER_INSIDE))
+    {
+      placeorder(k,HARDWARE_ORDER_INSIDE);
+    }
+    return;
   }
-  if(hardware_read_order(k,HARDWARE_ORDER_DOWN))
-  {
-    placeorder(k,HARDWARE_ORDER_DOWN);
-  }
-  if(hardware_read_order(k,HARDWARE_ORDER_INSIDE))
-  {
-    placeorder(k,HARDWARE_ORDER_INSIDE);
-  }
-  return
 }
 
-void clear_light(int floor);
+void clear_light(int floor)
 {
-  hardware_command_order_light(floor, HARDWARE_ORDER_INSIDE, 0)
+  hardware_command_order_light(floor, HARDWARE_ORDER_INSIDE, 0);
   hardware_command_order_light(floor, HARDWARE_ORDER_UP, 0);
   hardware_command_order_light(floor, HARDWARE_ORDER_DOWN, 0);
   return;
 }
 
-void order_served(int floor);
+void order_served(int floor)
 {
   down_orders[floor] = 0;
   up_orders[floor] = 0;
@@ -38,7 +40,7 @@ void order_served(int floor);
   return;
 }
 
-void stop_button();
+void stop_button()
 {
   clear_all_orders();
   clear_all_order_lights();

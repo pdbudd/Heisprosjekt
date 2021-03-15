@@ -1,4 +1,5 @@
 #include "initialise.h"
+#include "hardware.h"
 
 //returns the integer floor where the lift is at the end of initialisation
 int initialise()

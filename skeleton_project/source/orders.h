@@ -1,12 +1,11 @@
-/**
-*High priority queue array including integer floors elevator is currently on path to
-*/
-int hipri_Queue[HARDWARE_NUMBER_OF_FLOORS-1];
-
+#include "hardware.h"
 /**
 *Function that determines whether an order is serviced on the elevators current path
 *Either updates high priority queue array or places order in correct place of low priority array
 */
+HardwareMovement current_direction;
+int currentfloor;
+
 void placeorder(int floor, HardwareOrder direction);
 /**
 *Clears all orders
