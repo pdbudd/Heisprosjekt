@@ -18,6 +18,25 @@ void placeorder(int floor, HardwareOrder direction)
       break;
       default:;
     }
+    if(current_direction == HARDWARE_MOVEMENT_STOP)
+    {
+      if(currentfloor == floor)
+      {
+        door_open();
+        new_direction();
+        return;
+      }
+      if(currentfloor < floor)
+      {
+        hardware_command_movement (HARDWARE_MOVEMENT_UP);
+        return;
+      }
+      if(currentfloor > floor)
+      {
+        hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+        return;
+      }
+    }
     return;
   }
   else
@@ -64,6 +83,9 @@ void new_direction()
       break;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+      {
+
+      }
     break;
     default:;
   }

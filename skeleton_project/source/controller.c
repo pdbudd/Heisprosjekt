@@ -1,6 +1,7 @@
 #include "controller.h"
 #include "hardware.h"
 #include "orders.h"
+#include "door.h"
 
 void poll_buttons()
 {
@@ -52,7 +53,7 @@ void stop_button()
     {
       if(hardware_read_floor_sensor(f))
       {
-          door_open();
+          door_loop();
       }
     }
   }
