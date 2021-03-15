@@ -16,9 +16,13 @@ void clear_light(int floor);
 */
 void order_served(int floor);
 
+void clear_all_order_lights();
+
 /**
 * clears all orders, lights, and opens the doors if the elevator is at a floor.
 */
+
+
 void stop_button();
 
 void floor_reached();

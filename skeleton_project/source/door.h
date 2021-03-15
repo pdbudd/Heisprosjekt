@@ -30,4 +30,6 @@ void door_close();
 */
 int door_get_status();
 
+void door_loop();
+
 #endif

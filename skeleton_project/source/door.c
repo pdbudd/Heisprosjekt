@@ -44,3 +44,14 @@ void door_close() {
 int door_get_status(){
     return is_door_open;
 }
+
+void door_loop()
+{
+	door_open();
+	while (door_keep_open())
+	{
+		door_keep_open();
+	}
+	door_close();
+	return;
+}

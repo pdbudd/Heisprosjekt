@@ -35,6 +35,8 @@ typedef enum {
  */
 int hardware_init();
 
+static int hardware_legal_floor(int floor, HardwareOrder order_type);
+
 /**
  * @brief Commands the elevator to either move up or down,
  * or commands it to halt.

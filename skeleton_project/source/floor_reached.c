@@ -8,15 +8,14 @@ void floor_reached(int f)
   if (current_direction == HARDWARE_MOVEMENT_UP && up_orders[f])
   {
     door_loop();
-    clear_light(f);
-    new_direction();
+    order_served(f);
     return;
   }
   if (inside_orders[f])
   {
     door_loop();
-    clear_light(f);
-    new_direction();
+    order_served(f);
     return;
   }
+  return;
 }

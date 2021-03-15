@@ -23,7 +23,6 @@ void placeorder(int floor, HardwareOrder direction)
       if(currentfloor == floor)
       {
         door_open();
-        new_direction();
         return;
       }
       if(currentfloor < floor)
