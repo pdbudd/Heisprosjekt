@@ -46,7 +46,6 @@ void placeorder(int floor, HardwareOrder direction)
   }
 }
 
-//decide whether delete order function should be here or not
 void new_direction()
 {
   switch (current_direction)
@@ -57,6 +56,7 @@ void new_direction()
       if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
       {
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
+      current_direction == HARDWARE_MOVEMENT_UP;
       break;
       }
     }
@@ -64,9 +64,11 @@ void new_direction()
     {
       if(up_orders[k] == 1 || down_orders[k] == 1 || inside_orders[k] == 1)
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+      current_direction == HARDWARE_MOVEMENT_DOWN;
       break;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction == HARDWARE_MOVEMENT_STOP;
     break;
     case HARDWARE_MOVEMENT_DOWN:
     for(int j = 0; j <= currentfloor; j++)
@@ -74,6 +76,7 @@ void new_direction()
       if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
       {
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+      current_direction == HARDWARE_MOVEMENT_DOWN;
       break;
       }
     }
@@ -81,12 +84,10 @@ void new_direction()
     {
       if(up_orders[k] == 1 || down_orders[k] == 1 || inside_orders[k] == 1)
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
+      current_direction == HARDWARE_MOVEMENT_UP;
       break;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-      {
-
-      }
     break;
     default:;
   }

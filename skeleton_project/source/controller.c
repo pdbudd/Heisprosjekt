@@ -93,13 +93,7 @@ void stop_button()
   hardware_command_stop_light(1);
   while(hardware_read_stop_signal())
   {
-    for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS; f++)
-    {
-      if(hardware_read_floor_sensor(f))
-      {
-          door_loop();
-      }
-    }
+    door_loop();
   }
   hardware_command_stop_light(0);
   return;
