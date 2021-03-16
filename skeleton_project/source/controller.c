@@ -19,8 +19,8 @@ void poll_buttons()
     {
       placeorder(k,HARDWARE_ORDER_INSIDE);
     }
-    return;
   }
+  return;
 }
 
 void clear_light(int floor)
