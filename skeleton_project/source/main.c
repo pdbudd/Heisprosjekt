@@ -13,8 +13,9 @@ int main(){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
-    int currentfloor = initialise();
-    HardwareMovement current_direction = HARDWARE_MOVEMENT_STOP;
+    extern int currentfloor;
+    extern HardwareMovement current_direction;
+    currentfloor = initialise();
 
     while(1){
         if(hardware_read_stop_signal()){

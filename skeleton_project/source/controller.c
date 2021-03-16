@@ -23,6 +23,35 @@ void poll_buttons()
   return;
 }
 
+void floor_reached(int f)
+{
+  if (current_direction == HARDWARE_MOVEMENT_UP && up_orders[f])
+  {
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
+    door_loop();
+    order_served(f);
+    return;
+  }
+  if (inside_orders[f])
+  {
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
+    door_loop();
+    order_served(f);
+    return;
+  }
+  if(current_direction == HARDWARE_MOVEMENT_DOWN && down_orders[f])
+  {
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
+    door_loop();
+    order_served();
+    return;
+  }
+  return;
+}
+
 void clear_light(int floor)
 {
   hardware_command_order_light(floor, HARDWARE_ORDER_INSIDE, 0);
