@@ -28,16 +28,25 @@ int door_keep_open() {
 
 
 void door_open() {
-	hardware_command_door_open(1);
-    door_time_opened_pointer = time(NULL);  //oppdater klokken
-	is_door_open = 1;
+	for(int i = 0; i<HARDWARE_NUMBER_OF_FLOORS; i++)
+	{
+		if(hardware_read_floor_sensor(i))
+		{
+			hardware_command_door_open(1);
+		    door_time_opened_pointer = time(NULL);  //oppdater klokken
+			is_door_open = 1;
+		}
+	}
+	return;
 }
+
 
 
 
 void door_close() {
 	hardware_command_door_open(0);
     is_door_open = 0;
+		return;
 }
 
 
