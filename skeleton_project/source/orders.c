@@ -3,18 +3,18 @@
 
 void placeorder(int floor, HardwareOrder direction)
 {
-  if (1)
+  if (hardware_legal_floor(floor, direction))
   {
     switch (direction)
     {
       case HARDWARE_ORDER_UP:
-      up_orders[floor-1] = 1;
+      up_orders[floor] = 1;
       break;
       case HARDWARE_ORDER_DOWN:
-      down_orders[floor-1] = 1;
+      down_orders[floor] = 1;
       break;
       case HARDWARE_ORDER_INSIDE:
-      inside_orders[floor-1] = 1;
+      inside_orders[floor] = 1;
       break;
       default:;
     }
@@ -25,16 +25,18 @@ void placeorder(int floor, HardwareOrder direction)
         door_open();
         return;
       }
-      if(currentfloor < floor)
-      {
-        hardware_command_movement (HARDWARE_MOVEMENT_UP);
-        return;
-      }
-      if(currentfloor > floor)
-      {
-        hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-        return;
-      }
+        while(door_get_status())
+        {}
+        if(currentfloor < floor)
+        {
+          hardware_command_movement (HARDWARE_MOVEMENT_UP);
+          return;
+        }
+        if(currentfloor > floor)
+        {
+          hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+          return;
+        }
     }
     return;
   }
