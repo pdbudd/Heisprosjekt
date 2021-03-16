@@ -1,5 +1,5 @@
 SIM := false
-SOURCES := main.c initialise.c controller.c orders.c door.c floor_reached.c
+SOURCES := main.c initialise.c controller.c orders.c door.c
 
 SOURCE_DIR := source
 BUILD_DIR := build

@@ -27,6 +27,7 @@ void floor_reached(int f)
 {
   if (current_direction == HARDWARE_MOVEMENT_UP && up_orders[f])
   {
+    previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
@@ -35,6 +36,7 @@ void floor_reached(int f)
   }
   if (inside_orders[f])
   {
+    previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
@@ -43,10 +45,11 @@ void floor_reached(int f)
   }
   if(current_direction == HARDWARE_MOVEMENT_DOWN && down_orders[f])
   {
+    previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
-    order_served();
+    order_served(f);
     return;
   }
   return;
@@ -89,7 +92,9 @@ void stop_button()
 {
   clear_all_orders();
   clear_all_order_lights();
+  previous_direction = current_direction;
   hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+  current_direction = HARDWARE_MOVEMENT_STOP;
   hardware_command_stop_light(1);
   while(hardware_read_stop_signal())
   {

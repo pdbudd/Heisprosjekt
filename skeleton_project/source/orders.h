@@ -1,4 +1,8 @@
 #include "hardware.h"
+
+extern int currentfloor;
+extern HardwareMovement current_direction;
+extern HardwareMovement previous_direction;
 /**
 *Function that determines whether an order is serviced on the elevators current path
 *Either updates high priority queue array or places order in correct place of low priority array

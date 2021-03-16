@@ -12,11 +12,10 @@ int initialise()
         if(hardware_read_floor_sensor(f))
         {
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-            current_direction = HARDWARE_MOVEMENT_STOP;
             hardware_command_floor_indicator_on(f);
             return f;
         }
       }
     }
-    return;
+    return -1;
 }

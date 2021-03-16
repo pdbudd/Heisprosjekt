@@ -48,7 +48,7 @@ void placeorder(int floor, HardwareOrder direction)
 
 void new_direction()
 {
-  switch (current_direction)
+  switch (previous_direction)
   {
     case HARDWARE_MOVEMENT_UP:
     for(int j = currentfloor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
