@@ -2,6 +2,11 @@
 #include "hardware.h"
 #include "orders.h"
 #include "door.h"
+#include <stdio.h>
+
+HardwareMovement previous_direction;
+HardwareMovement current_direction;
+int current_floor;
 
 void poll_buttons()
 {

@@ -7,19 +7,20 @@
 #include "controller.h"
 #include "door.h"
 
-int current_floor;
-HardwareMovement current_direction;
-HardwareMovement previous_direction;
 
+
+int current_floor;
+HardwareMovement current_direction = HARDWARE_MOVEMENT_STOP;
+HardwareMovement previous_direction = HARDWARE_MOVEMENT_STOP;
 
 int main(){
+  previous_direction = HARDWARE_MOVEMENT_STOP;
+  current_direction = HARDWARE_MOVEMENT_UP;
     int error = hardware_init();
     if(error != 0){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
-    previous_direction = HARDWARE_MOVEMENT_STOP;
-    current_direction = HARDWARE_MOVEMENT_UP;
     current_floor = initialise();
     current_direction = HARDWARE_MOVEMENT_STOP;
 

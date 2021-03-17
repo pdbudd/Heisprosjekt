@@ -1,6 +1,10 @@
 #include "orders.h"
 #include "hardware.h"
 
+HardwareMovement previous_direction;
+HardwareMovement current_direction;
+int current_floor;
+
 void placeorder(int floor, HardwareOrder direction)
 {
   if (hardware_legal_floor(floor, direction))
@@ -63,7 +67,7 @@ int floor_stop_query()
     }
     case HARDWARE_MOVEMENT_DOWN:
     for(int j = 0; j < current_floor; j++)
-
+    {
       if(up_orders[j] || down_orders[j] || inside_orders[j])
       {
       return 0;

@@ -13,6 +13,11 @@ int is_door_open = 0;
 
 time_t door_time_opened_pointer;
 
+HardwareMovement previous_direction;
+HardwareMovement current_direction;
+int current_floor;
+
+
 
 
 int door_keep_open() {
