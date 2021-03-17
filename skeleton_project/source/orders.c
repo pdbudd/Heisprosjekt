@@ -20,19 +20,19 @@ void placeorder(int floor, HardwareOrder direction)
     }
     if(current_direction == HARDWARE_MOVEMENT_STOP)
     {
-      if(currentfloor == floor)
+      if(current_floor == floor)
       {
         door_open();
         return;
       }
         while(door_get_status())
         {}
-        if(currentfloor < floor)
+        if(current_floor < floor)
         {
           hardware_command_movement (HARDWARE_MOVEMENT_UP);
           return;
         }
-        if(currentfloor > floor)
+        if(current_floor > floor)
         {
           hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
           return;
@@ -46,23 +46,51 @@ void placeorder(int floor, HardwareOrder direction)
   }
 }
 
+//returns 1 if the elevator has no orders further along its current path
+int floor_stop_query()
+{
+  switch (current_direction)
+  {
+    case HARDWARE_MOVEMENT_UP:
+    {
+      for(int j = current_floor+1; j<HARDWARE_NUMBER_OF_FLOORS; j++)
+      {
+        if(up_orders[j] || down_orders[j] || inside_orders[j])
+        {
+        return 0;
+        }
+      }
+    }
+    case HARDWARE_MOVEMENT_DOWN:
+    for(int j = 0; j < current_floor; j++)
+
+      if(up_orders[j] || down_orders[j] || inside_orders[j])
+      {
+      return 0;
+      }
+      default:;
+    }
+  }
+  return 1;
+}
+
 void new_direction()
 {
   switch (previous_direction)
   {
     case HARDWARE_MOVEMENT_UP:
-    for(int j = currentfloor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
+    for(int j = current_floor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
     {
-      if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
+      if(up_orders[j] || down_orders[j] || inside_orders[j])
       {
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction == HARDWARE_MOVEMENT_UP;
       break;
       }
     }
-    for(int k = 0; k < currentfloor +1; k++)
+    for(int k = 0; k < current_floor +1; k++)
     {
-      if(up_orders[k] == 1 || down_orders[k] == 1 || inside_orders[k] == 1)
+      if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
       current_direction == HARDWARE_MOVEMENT_DOWN;
       break;
@@ -71,18 +99,18 @@ void new_direction()
     current_direction == HARDWARE_MOVEMENT_STOP;
     break;
     case HARDWARE_MOVEMENT_DOWN:
-    for(int j = 0; j <= currentfloor; j++)
+    for(int j = 0; j <= current_floor; j++)
     {
-      if(up_orders[j] == 1 || down_orders[j] == 1 || inside_orders[j] == 1)
+      if(up_orders[j] || down_orders[j] || inside_orders[j])
       {
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
       current_direction == HARDWARE_MOVEMENT_DOWN;
       break;
       }
     }
-    for(int k = currentfloor; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+    for(int k = current_floor; k < HARDWARE_NUMBER_OF_FLOORS; k++)
     {
-      if(up_orders[k] == 1 || down_orders[k] == 1 || inside_orders[k] == 1)
+      if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction == HARDWARE_MOVEMENT_UP;
       break;

@@ -5,10 +5,11 @@
 #include "orders.h"
 #include "initialise.h"
 #include "controller.h"
+#include "door.h"
 
-extern int currentfloor;
-extern HardwareMovement current_direction;
-extern HardwareMovement previous_direction;
+int current_floor;
+HardwareMovement current_direction;
+HardwareMovement previous_direction;
 
 
 int main(){
@@ -17,8 +18,9 @@ int main(){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
+    previous_direction = HARDWARE_MOVEMENT_STOP;
     current_direction = HARDWARE_MOVEMENT_UP;
-    currentfloor = initialise();
+    current_floor = initialise();
     current_direction = HARDWARE_MOVEMENT_STOP;
 
     while(1){

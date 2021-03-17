@@ -26,10 +26,6 @@ typedef enum {
     HARDWARE_ORDER_DOWN
 } HardwareOrder;
 
-extern int currentfloor;
-extern HardwareMovement current_direction;
-extern HardwareMovement previous_direction;
-
 /**
  * @brief Initializes the elevator control hardware.
  * Must be called once before other calls to the elevator

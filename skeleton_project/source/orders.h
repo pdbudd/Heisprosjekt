@@ -1,14 +1,9 @@
 #include "hardware.h"
-
-extern int currentfloor;
-extern HardwareMovement current_direction;
-extern HardwareMovement previous_direction;
 /**
 *Function that determines whether an order is serviced on the elevators current path
 *Either updates high priority queue array or places order in correct place of low priority array
 */
-HardwareMovement current_direction;
-int currentfloor;
+
 
 void placeorder(int floor, HardwareOrder direction);
 /**
@@ -20,6 +15,10 @@ void clear_all_orders();
 *Deletes order lopri_Queue[order]
 */
 void delete_order(int floor, HardwareOrder direction);
+
+int floor_stop_query();
+
+void new_direction();
 
 int down_orders[HARDWARE_NUMBER_OF_FLOORS-1];
 

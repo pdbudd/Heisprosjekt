@@ -25,15 +25,7 @@ void poll_buttons()
 
 void floor_reached(int f)
 {
-  if (current_direction == HARDWARE_MOVEMENT_UP && up_orders[f])
-  {
-    previous_direction = current_direction;
-    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    current_direction = HARDWARE_MOVEMENT_STOP;
-    door_loop();
-    order_served(f);
-    return;
-  }
+  //if there are orders from inside for floor they are served
   if (inside_orders[f])
   {
     previous_direction = current_direction;
@@ -43,6 +35,17 @@ void floor_reached(int f)
     order_served(f);
     return;
   }
+  //if elevator is going up it serves orders going up for floor
+  if (current_direction == HARDWARE_MOVEMENT_UP && up_orders[f])
+  {
+    previous_direction = current_direction;
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
+    door_loop();
+    order_served(f);
+    return;
+  }
+  //if elevator is going down it serves orders going down for the floor
   if(current_direction == HARDWARE_MOVEMENT_DOWN && down_orders[f])
   {
     previous_direction = current_direction;
@@ -52,6 +55,21 @@ void floor_reached(int f)
     order_served(f);
     return;
   }
+  //if elevator has no orders along the direction it is already going then it will
+  //stop for orders in opposite direction.
+  if(floor_stop_query())
+  {
+    if(up_orders[f] || down_orders[f])
+    {
+      previous_direction = current_direction;
+      hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+      current_direction = HARDWARE_MOVEMENT_STOP;
+      door_loop();
+      order_served(f);
+      return;
+    }
+  }
+  //if none of the conditions are met the lift continues in its direction.
   return;
 }
 

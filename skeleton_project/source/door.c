@@ -1,4 +1,5 @@
 #include "door.h"
+#include "controller.h"
 #include "hardware.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -59,6 +60,7 @@ void door_loop()
 	door_open();
 	while (door_keep_open())
 	{
+		poll_buttons();
 		door_keep_open();
 	}
 	door_close();

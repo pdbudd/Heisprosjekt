@@ -1,10 +1,9 @@
-#ifdef DOOR_H_
+#ifndef DOOR_H_
 #define DOOR_H_
 /**
 *@file
 *@brief A executive controlling operations connected to the doors
 */
-
 int door_keep_open();
 
 

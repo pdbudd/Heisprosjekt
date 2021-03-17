@@ -1,9 +1,5 @@
 #include "hardware.h"
 
-hardware_movement previous_direction;
-hardware_movement current_direction;
-int currentfloor;
-
 /**
 * quickly polls all buttons and places orders into relevant arrays if one is pressed.
 */
