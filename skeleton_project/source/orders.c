@@ -30,7 +30,7 @@ void placeorder(int floor, HardwareOrder direction)
         door_loop();
         return;
       }
-        while(door_get_status())
+        while(1)
         {
           if(current_floor < floor)
           {
@@ -44,7 +44,7 @@ void placeorder(int floor, HardwareOrder direction)
           }
         }
     return;
-    } 
+    }
   }
   else
   {
