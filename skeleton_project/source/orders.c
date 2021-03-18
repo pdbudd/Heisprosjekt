@@ -120,6 +120,7 @@ void new_direction()
       {
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
       current_direction = HARDWARE_MOVEMENT_DOWN;
+      printf("going down");
       return;
       }
     }
@@ -128,10 +129,12 @@ void new_direction()
       if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction = HARDWARE_MOVEMENT_UP;
+      printf("going up");
       return;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
+    printf("stopping");
     return;
     default:;
   }
