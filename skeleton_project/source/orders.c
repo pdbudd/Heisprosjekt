@@ -126,13 +126,13 @@ void new_direction()
     }
     for(int k = HARDWARE_NUMBER_OF_FLOORS - 1; k > current_floor; k--)
     {
-      if(k== current_floor)
-      {break;}
       if(up_orders[k] || down_orders[k] || inside_orders[k])
+      {
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction = HARDWARE_MOVEMENT_UP;
       printf("going up\n");
       return;
+      }
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
