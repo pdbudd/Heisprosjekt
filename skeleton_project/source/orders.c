@@ -1,6 +1,7 @@
 #include "orders.h"
 #include "hardware.h"
 #include "door.h"
+#include <stdio.h>
 
 HardwareMovement previous_direction;
 HardwareMovement current_direction;
@@ -83,25 +84,32 @@ int floor_stop_query()
 
 void new_direction()
 {
-  printf("choosing direction");
+  printf("choosing direction\n");
   switch (previous_direction)
   {
     case HARDWARE_MOVEMENT_UP:
+    printf("was going up\n");
+    printf("checking orders above\n");
     for(int j = current_floor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
     {
       if(up_orders[j] || down_orders[j] || inside_orders[j])
       {
+      printf("order found\n");
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction = HARDWARE_MOVEMENT_UP;
       return;
       }
     }
+    printf("checking orders below\n");
     for(int k = 0; k < current_floor +1; k++)
     {
       if(up_orders[k] || down_orders[k] || inside_orders[k])
-      hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-      current_direction = HARDWARE_MOVEMENT_DOWN;
-      return;
+      {
+        printf("order found\n");
+        hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+        current_direction = HARDWARE_MOVEMENT_DOWN;
+        return;
+      }
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
