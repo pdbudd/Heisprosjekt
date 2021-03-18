@@ -40,7 +40,7 @@ void floor_reached(int f)
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     if(current_direction = HARDWARE_MOVEMENT_STOP)
-    {printf("stopped")}
+    {printf("stopped");}
     door_loop();
     order_served(f);
     return;
