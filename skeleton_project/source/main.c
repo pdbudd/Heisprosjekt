@@ -54,7 +54,6 @@ int main(){
           if(hardware_read_floor_sensor(f))
           {
               current_floor = f;
-              //hardware_command_floor_indicator_on(f);
               floor_reached(f);
           }
         }
