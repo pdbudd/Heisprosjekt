@@ -33,6 +33,8 @@ void poll_buttons()
 
 void floor_reached(int f)
 {
+  current_floor=f;
+  hardware_command_floor_indicator_on(f);
   //if there are orders from inside for floor they are served
   if (inside_orders[f])
   {

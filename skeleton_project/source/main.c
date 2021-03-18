@@ -25,7 +25,8 @@ int main(){
     current_direction = HARDWARE_MOVEMENT_STOP;
 
     while(1){
-        if(hardware_read_stop_signal()){
+        if(hardware_read_stop_signal())
+        {
           previous_direction = current_direction;
           while(hardware_read_stop_signal())
           {
@@ -42,6 +43,7 @@ int main(){
         {
           if(hardware_read_floor_sensor(f))
           {
+              current_floor = f;
               hardware_command_floor_indicator_on(f);
               floor_reached(f);
           }
