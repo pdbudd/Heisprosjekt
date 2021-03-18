@@ -2,7 +2,7 @@
 #include "hardware.h"
 #include "door.h"
 #include <stdio.h>
-#include <stdlib>
+#include <stdlib.h>
 
 HardwareMovement previous_direction;
 HardwareMovement current_direction;
