@@ -85,7 +85,8 @@ int floor_stop_query()
 void new_direction()
 {
   printf("choosing direction\n");
-  printf("%s", previous_direction);
+  printf("%d", previous_direction);
+  printf("%d", current_direction);
   switch (previous_direction)
   {
     case HARDWARE_MOVEMENT_UP:
