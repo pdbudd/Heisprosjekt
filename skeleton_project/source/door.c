@@ -65,6 +65,7 @@ void door_loop()
 	door_open();
 	while (door_keep_open())
 	{
+		hardware_command_stop_light(hardware_read_stop_signal());
 		poll_buttons();
 		door_keep_open();
 	}
