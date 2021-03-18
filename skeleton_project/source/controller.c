@@ -69,7 +69,7 @@ void floor_reached(int f)
   }
   //if elevator has no orders along the direction it is already going then it will
   //stop for orders in opposite direction.
-  if(floor_stop_query())
+  if(floor_stop_query() && current_direction != HARDWARE_MOVEMENT_STOP)
   {
     if(up_orders[f] || down_orders[f])
     {
