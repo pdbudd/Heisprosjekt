@@ -115,7 +115,6 @@ void stop_button()
 {
   clear_all_orders();
   clear_all_order_lights();
-  previous_direction = current_direction;
   hardware_command_movement(HARDWARE_MOVEMENT_STOP);
   current_direction = HARDWARE_MOVEMENT_STOP;
   hardware_command_stop_light(1);

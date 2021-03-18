@@ -26,7 +26,11 @@ int main(){
 
     while(1){
         if(hardware_read_stop_signal()){
+          previous_direction = current_direction;
+          while(hardware_read_stop_signal())
+          {
             stop_button();
+          }
         }
         if(door_get_status())
         {hardware_command_movement(HARDWARE_MOVEMENT_STOP);}
