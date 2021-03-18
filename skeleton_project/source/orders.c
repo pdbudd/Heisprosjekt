@@ -27,22 +27,22 @@ void placeorder(int floor, HardwareOrder direction)
     {
       if(current_floor == floor)
       {
-        door_open();
+        door_loop();
         return;
       }
         while(door_get_status())
-        {}
-        if(current_floor < floor)
         {
-          hardware_command_movement (HARDWARE_MOVEMENT_UP);
-          return;
+          if(current_floor < floor)
+          {
+            hardware_command_movement (HARDWARE_MOVEMENT_UP);
+            return;
+          }
+          if(current_floor > floor)
+          {
+            hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+            return;
+          }
         }
-        if(current_floor > floor)
-        {
-          hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-          return;
-        }
-    }
     return;
   }
   else
