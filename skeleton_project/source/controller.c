@@ -15,14 +15,17 @@ void poll_buttons()
     if(hardware_read_order(k,HARDWARE_ORDER_UP))
     {
       placeorder(k,HARDWARE_ORDER_UP);
+      hardware_command_order_light(k,HARDWARE_ORDER_UP,1);
     }
     if(hardware_read_order(k,HARDWARE_ORDER_DOWN))
     {
       placeorder(k,HARDWARE_ORDER_DOWN);
+      hardware_command_order_light(k,HARDWARE_ORDER_DOWN,1);
     }
     if(hardware_read_order(k,HARDWARE_ORDER_INSIDE))
     {
       placeorder(k,HARDWARE_ORDER_INSIDE);
+      hardware_command_order_light(k,HARDWARE_ORDER_INSIDE,1);
     }
   }
   return;

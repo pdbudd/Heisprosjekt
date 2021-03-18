@@ -44,6 +44,7 @@ void placeorder(int floor, HardwareOrder direction)
           }
         }
     return;
+    } 
   }
   else
   {
