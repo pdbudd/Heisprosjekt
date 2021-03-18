@@ -115,7 +115,7 @@ void new_direction()
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
-    break;
+    return;
     case HARDWARE_MOVEMENT_DOWN:
     for(int j = 0; j < current_floor + 1; j++)
     {
@@ -134,7 +134,7 @@ void new_direction()
       return;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    break;
+    return;
     default:;
   }
   return;
