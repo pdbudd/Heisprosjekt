@@ -31,7 +31,7 @@ void placeorder(int floor, HardwareOrder direction)
         break;
         default:;
       }
-        while(!door_get_status())
+        if(!door_get_status())
         {
           if(current_floor < floor)
           {
