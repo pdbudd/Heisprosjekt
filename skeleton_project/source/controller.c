@@ -51,6 +51,7 @@ void floor_reached(int f)
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
+    door_close();
     order_served(f);
     return;
   }
@@ -61,6 +62,7 @@ void floor_reached(int f)
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
+    door_close();
     order_served(f);
     return;
   }
