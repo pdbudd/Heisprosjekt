@@ -22,6 +22,7 @@ int main(){
         exit(1);
     }
     current_floor = initialise();
+    printf("initialised at %d floor\n", current_floor);
     current_direction = HARDWARE_MOVEMENT_STOP;
 
     while(1){
@@ -35,6 +36,12 @@ int main(){
         }
         if(door_get_status())
         {hardware_command_movement(HARDWARE_MOVEMENT_STOP);}
+        for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+        {
+          hardware_command_order_light(k,HARDWARE_ORDER_UP,up_orders[k]);
+          hardware_command_order_light(k,HARDWARE_ORDER_DOWN,down_orders[k]);
+          hardware_command_order_light(k,HARDWARE_ORDER_INSIDE,inside_orders[k]);
+        }
 
         poll_buttons();
 
