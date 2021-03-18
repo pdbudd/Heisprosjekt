@@ -37,9 +37,9 @@ void floor_reached(int f)
   //if there are orders from inside for floor they are served
   if (inside_orders[f])
   {
-    //previous_direction = current_direction;
+    previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //current_direction = HARDWARE_MOVEMENT_STOP;
+    current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
     order_served(f);
     return;
