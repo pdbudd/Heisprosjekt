@@ -46,13 +46,15 @@ int main(){
 
         poll_buttons();
 
+        hardware_command_floor_indicator_on(current_floor);
+
 
         for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS; f++)
         {
           if(hardware_read_floor_sensor(f))
           {
               current_floor = f;
-              hardware_command_floor_indicator_on(f);
+              //hardware_command_floor_indicator_on(f);
               floor_reached(f);
           }
         }
