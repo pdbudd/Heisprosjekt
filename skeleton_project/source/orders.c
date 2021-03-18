@@ -134,6 +134,7 @@ void new_direction()
       return;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
     return;
     default:;
   }
