@@ -69,5 +69,6 @@ void door_loop()
 		door_keep_open();
 	}
 	door_close();
+	is_door_open = 0;
 	return;
 }
