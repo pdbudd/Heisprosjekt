@@ -40,9 +40,6 @@ void floor_reached(int f)
     //previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     //current_direction = HARDWARE_MOVEMENT_STOP;
-    door_loop();
-    order_served(f);
-    return;
   }
   if (inside_orders[f])
   {
