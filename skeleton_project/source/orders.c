@@ -87,7 +87,7 @@ int floor_stop_query()
 
 void new_direction()
 {
-  switch (current_direction)
+  switch (previous_direction)
   {
     case HARDWARE_MOVEMENT_UP:
     printf("was going up\n");
@@ -117,7 +117,8 @@ void new_direction()
     current_direction = HARDWARE_MOVEMENT_STOP;
     return;
     case HARDWARE_MOVEMENT_DOWN:
-    for(int j = 0; j < current_floor + 1; j++)
+
+    for(int j = 0; j < current_floor; j++)
     {
       if(up_orders[j] || down_orders[j] || inside_orders[j])
       {

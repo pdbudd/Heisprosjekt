@@ -39,8 +39,6 @@ void floor_reached(int f)
     //previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     //current_direction = HARDWARE_MOVEMENT_STOP;
-    if(current_direction == HARDWARE_MOVEMENT_STOP)
-    {printf("stopped");}
     door_loop();
     order_served(f);
     return;
@@ -48,9 +46,9 @@ void floor_reached(int f)
   //if elevator is going up it serves orders going up for floor
   if (current_direction == HARDWARE_MOVEMENT_UP && up_orders[f])
   {
-    //previous_direction = current_direction;
+    previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //current_direction = HARDWARE_MOVEMENT_STOP;
+    current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
     order_served(f);
     return;
@@ -58,9 +56,9 @@ void floor_reached(int f)
   //if elevator is going down it serves orders going down for the floor
   if(current_direction == HARDWARE_MOVEMENT_DOWN && down_orders[f])
   {
-    //previous_direction = current_direction;
+    previous_direction = current_direction;
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //current_direction = HARDWARE_MOVEMENT_STOP;
+    current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
     order_served(f);
     return;
@@ -71,9 +69,9 @@ void floor_reached(int f)
   {
     if(up_orders[f] || down_orders[f])
     {
-      //previous_direction = current_direction;
+      previous_direction = current_direction;
       hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-      //current_direction = HARDWARE_MOVEMENT_STOP;
+      current_direction = HARDWARE_MOVEMENT_STOP;
       door_loop();
       order_served(f);
       return;
