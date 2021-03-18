@@ -24,6 +24,7 @@ int main(){
     current_floor = initialise();
     printf("initialised at %d floor\n", current_floor);
     current_direction = HARDWARE_MOVEMENT_STOP;
+      printf("%d", current_direction);
 
     while(1){
         if(hardware_read_stop_signal())
