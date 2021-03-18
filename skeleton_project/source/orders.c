@@ -120,21 +120,21 @@ void new_direction()
       {
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
       current_direction = HARDWARE_MOVEMENT_DOWN;
-      printf("going down");
+      printf("going down\n");
       return;
       }
     }
-    for(int k = current_floor; k < HARDWARE_NUMBER_OF_FLOORS +1; k++)
+    for(int k = HARDWARE_NUMBER_OF_FLOORS; k > current_floor; k--)
     {
       if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction = HARDWARE_MOVEMENT_UP;
-      printf("going up");
+      printf("going up\n");
       return;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
-    printf("stopping");
+    printf("stopping\n");
     return;
     default:;
   }
