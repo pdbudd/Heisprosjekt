@@ -13,7 +13,7 @@ void placeorder(int floor, HardwareOrder direction)
 {
   if (hardware_legal_floor(floor, direction))
   {
-      if(current_floor == floor && current_direction == HARDWARE_MOVEMENT_STOP)
+      if(hardware_read_floor_sensor(floor) && current_direction == HARDWARE_MOVEMENT_STOP)
       {
         door_loop();
         return;
