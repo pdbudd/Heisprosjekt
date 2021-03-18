@@ -117,7 +117,7 @@ void new_direction()
     current_direction = HARDWARE_MOVEMENT_STOP;
     break;
     case HARDWARE_MOVEMENT_DOWN:
-    for(int j = 0; j < current_floor; j++)
+    for(int j = 0; j < current_floor + 1; j++)
     {
       if(up_orders[j] || down_orders[j] || inside_orders[j])
       {
@@ -126,7 +126,7 @@ void new_direction()
       return;
       }
     }
-    for(int k = current_floor + 1; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+    for(int k = current_floor; k < HARDWARE_NUMBER_OF_FLOORS; k++)
     {
       if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
