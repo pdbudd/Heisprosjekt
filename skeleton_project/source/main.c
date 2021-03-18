@@ -35,8 +35,8 @@ int main(){
             stop_button();
           }
         }
-        if(door_get_status())
-        {hardware_command_movement(HARDWARE_MOVEMENT_STOP);}
+      //  if(door_get_status())
+        //{hardware_command_movement(HARDWARE_MOVEMENT_STOP);}
         for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)
         {
           hardware_command_order_light(k,HARDWARE_ORDER_UP,up_orders[k]);
