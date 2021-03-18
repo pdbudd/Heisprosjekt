@@ -7,6 +7,7 @@
 HardwareMovement current_direction;
 HardwareMovement previous_direction;
 int current_floor;
+int is_door_open;
 
 void poll_buttons()
 {
@@ -97,6 +98,7 @@ void order_served(int floor)
   down_orders[floor] = 0;
   up_orders[floor] = 0;
   inside_orders[floor] = 0;
+  is_door_open = 0;
   new_direction();
   return;
 }
