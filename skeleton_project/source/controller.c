@@ -35,12 +35,6 @@ void floor_reached(int f)
 {
   hardware_command_floor_indicator_on(f);
   //if there are orders from inside for floor they are served
-  if(f == 0 || f == HARDWARE_NUMBER_OF_FLOORS-1)
-  {
-    //previous_direction = current_direction;
-    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //current_direction = HARDWARE_MOVEMENT_STOP;
-  }
   if (inside_orders[f])
   {
     //previous_direction = current_direction;
