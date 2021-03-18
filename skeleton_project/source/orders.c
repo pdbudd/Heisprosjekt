@@ -86,7 +86,7 @@ void new_direction()
 {
   if(previous_direction == HARDWARE_MOVEMENT_UP)
   {
-  printf("movement was up")
+  printf("movement was up");
   }
   switch (previous_direction)
   {
