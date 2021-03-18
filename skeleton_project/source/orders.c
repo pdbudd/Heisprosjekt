@@ -34,7 +34,7 @@ void placeorder(int floor, HardwareOrder direction)
         default:;
       }
         printf("is door open: %d\n", is_door_open);
-        while(!is_door_open)
+        while(1)
         {
           if(current_floor < floor)
           {
