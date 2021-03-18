@@ -38,11 +38,13 @@ void placeorder(int floor, HardwareOrder direction)
           if(current_floor < floor)
           {
             hardware_command_movement (HARDWARE_MOVEMENT_UP);
+            current_direction = HARDWARE_MOVEMENT_UP;
             return;
           }
           if(current_floor > floor)
           {
             hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+            current_direction = HARDWARE_MOVEMENT_DOWN;
             return;
           }
         }
