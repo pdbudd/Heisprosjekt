@@ -11,24 +11,27 @@ int is_door_open;
 
 void poll_buttons()
 {
-  for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+  if(!hardware_read_stop_signal())
   {
-    if(hardware_read_order(k,HARDWARE_ORDER_UP))
-    {
-      placeorder(k,HARDWARE_ORDER_UP);
-      hardware_command_order_light(k,HARDWARE_ORDER_UP,1);
+      for (int k = 0; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+      {
+        if(hardware_read_order(k,HARDWARE_ORDER_UP))
+        {
+          placeorder(k,HARDWARE_ORDER_UP);
+          hardware_command_order_light(k,HARDWARE_ORDER_UP,1);
+        }
+        if(hardware_read_order(k,HARDWARE_ORDER_DOWN))
+        {
+          placeorder(k,HARDWARE_ORDER_DOWN);
+          hardware_command_order_light(k,HARDWARE_ORDER_DOWN,1);
+        }
+        if(hardware_read_order(k,HARDWARE_ORDER_INSIDE))
+        {
+          placeorder(k,HARDWARE_ORDER_INSIDE);
+          hardware_command_order_light(k,HARDWARE_ORDER_INSIDE,1);
+        }
+      }
     }
-    if(hardware_read_order(k,HARDWARE_ORDER_DOWN))
-    {
-      placeorder(k,HARDWARE_ORDER_DOWN);
-      hardware_command_order_light(k,HARDWARE_ORDER_DOWN,1);
-    }
-    if(hardware_read_order(k,HARDWARE_ORDER_INSIDE))
-    {
-      placeorder(k,HARDWARE_ORDER_INSIDE);
-      hardware_command_order_light(k,HARDWARE_ORDER_INSIDE,1);
-    }
-  }
   return;
 }
 
@@ -127,8 +130,8 @@ void stop_button()
   hardware_command_stop_light(1);
   while(hardware_read_stop_signal())
   {
+      hardware_command_stop_light(hardware_read_stop_signal());
     door_loop();
   }
-  hardware_command_stop_light(0);
   return;
 }
