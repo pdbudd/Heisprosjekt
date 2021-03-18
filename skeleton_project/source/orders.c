@@ -31,7 +31,7 @@ void placeorder(int floor, HardwareOrder direction)
         door_loop();
         return;
       }
-        while(is_door_open)
+        while(!is_door_open)
         {
           if(current_floor < floor)
           {
@@ -83,6 +83,7 @@ int floor_stop_query()
 
 void new_direction()
 {
+  printf("choosing direction");
   switch (previous_direction)
   {
     case HARDWARE_MOVEMENT_UP:
@@ -92,7 +93,7 @@ void new_direction()
       {
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction = HARDWARE_MOVEMENT_UP;
-      break;
+      return;
       }
     }
     for(int k = 0; k < current_floor +1; k++)
@@ -100,7 +101,7 @@ void new_direction()
       if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
       current_direction = HARDWARE_MOVEMENT_DOWN;
-      break;
+      return;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
@@ -112,7 +113,7 @@ void new_direction()
       {
       hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
       current_direction = HARDWARE_MOVEMENT_DOWN;
-      break;
+      return;
       }
     }
     for(int k = current_floor; k < HARDWARE_NUMBER_OF_FLOORS; k++)
@@ -120,7 +121,7 @@ void new_direction()
       if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
       current_direction = HARDWARE_MOVEMENT_UP;
-      break;
+      return;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     break;
