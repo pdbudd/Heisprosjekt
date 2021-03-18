@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-HardwareMovement previous_direction;
 HardwareMovement current_direction;
+HardwareMovement previous_direction;
 int current_floor;
 int is_door_open;
 
@@ -85,11 +85,7 @@ int floor_stop_query()
 
 void new_direction()
 {
-  if(previous_direction == HARDWARE_MOVEMENT_UP)
-  {
-  printf("movement was up");
-  }
-  switch (previous_direction)
+  switch (current_direction)
   {
     case HARDWARE_MOVEMENT_UP:
     printf("was going up\n");
