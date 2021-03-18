@@ -123,7 +123,7 @@ void new_direction()
       return;
       }
     }
-    for(int k = current_floor; k < HARDWARE_NUMBER_OF_FLOORS; k++)
+    for(int k = current_floor; k < HARDWARE_NUMBER_OF_FLOORS +1; k++)
     {
       if(up_orders[k] || down_orders[k] || inside_orders[k])
       hardware_command_movement(HARDWARE_MOVEMENT_UP);
