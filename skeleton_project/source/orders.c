@@ -5,6 +5,7 @@
 HardwareMovement previous_direction;
 HardwareMovement current_direction;
 int current_floor;
+int is_door_open;
 
 void placeorder(int floor, HardwareOrder direction)
 {
@@ -30,7 +31,7 @@ void placeorder(int floor, HardwareOrder direction)
         door_loop();
         return;
       }
-        while(1)
+        while(is_door_open)
         {
           if(current_floor < floor)
           {
