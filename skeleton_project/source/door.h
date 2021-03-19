@@ -2,7 +2,7 @@
 #define DOOR_H_
 /**
 *@file
-*@brief A executive controlling operations connected to the doors
+*@brief Declaration of door functions
 */
 int door_keep_open();
 

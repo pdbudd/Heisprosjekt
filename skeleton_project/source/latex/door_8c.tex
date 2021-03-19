@@ -1,0 +1,100 @@
+\hypertarget{door_8c}{}\doxysection{door.\+c File Reference}
+\label{door_8c}\index{door.c@{door.c}}
+
+
+file containing functions for door operations  
+
+
+{\ttfamily \#include \char`\"{}door.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for door.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{door_8c_a791279710026d33a8c839ad719d24483}\label{door_8c_a791279710026d33a8c839ad719d24483}} 
+\#define {\bfseries D\+O\+O\+R\+\_\+\+O\+P\+E\+N\+\_\+\+I\+N\+T\+E\+R\+V\+AL}~3
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{door_8c_a69ea650077db6523fe46a6d29fcbb36d}\label{door_8c_a69ea650077db6523fe46a6d29fcbb36d}} 
+int {\bfseries door\+\_\+keep\+\_\+open} ()
+\item 
+\mbox{\Hypertarget{door_8c_ab4ab52d12033d37e81f47bd9e7f2a724}\label{door_8c_ab4ab52d12033d37e81f47bd9e7f2a724}} 
+void \mbox{\hyperlink{door_8c_ab4ab52d12033d37e81f47bd9e7f2a724}{door\+\_\+open}} ()
+\begin{DoxyCompactList}\small\item\em Open the door and set the {\ttfamily is\+\_\+door\+\_\+open} int to 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{door_8c_a4963f41066e7275dc76cd2f01cc2f53f}{door\+\_\+close}} ()
+\begin{DoxyCompactList}\small\item\em Close the door and set the {\ttfamily is\+\_\+door\+\_\+open} int to 0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{door_8c_a07995a37239f2f93425857ba782c7e97}{door\+\_\+get\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em Fetch door status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{door_8c_a2aa80a86d9f16ad440754a2c3a8f736a}{door\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em calls {\ttfamily door\+\_\+open}, while {\ttfamily door\+\_\+keep\+\_\+open} is high calls {\ttfamily poll\+\_\+buttons}, {\ttfamily door\+\_\+keep\+\_\+open} and updates {\ttfamily hardware\+\_\+command\+\_\+stop\+\_\+light} calls {\ttfamily door\+\_\+close} when {\ttfamily door\+\_\+keep\+\_\+open} goes low \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{door_8c_aef75f1916a4252232260f1fa061480da}\label{door_8c_aef75f1916a4252232260f1fa061480da}} 
+int {\bfseries is\+\_\+door\+\_\+open} = 0
+\item 
+\mbox{\Hypertarget{door_8c_aac90f8651d9398487bdc6fb3bbfc1ef8}\label{door_8c_aac90f8651d9398487bdc6fb3bbfc1ef8}} 
+time\+\_\+t {\bfseries door\+\_\+time\+\_\+opened\+\_\+pointer}
+\item 
+\mbox{\Hypertarget{door_8c_ab1cb5a3b17a40ee0f3ca79db5625b740}\label{door_8c_ab1cb5a3b17a40ee0f3ca79db5625b740}} 
+\mbox{\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement}} {\bfseries previous\+\_\+direction}
+\item 
+\mbox{\Hypertarget{door_8c_a1046f1be4602c42ef4fe8de2ed351c66}\label{door_8c_a1046f1be4602c42ef4fe8de2ed351c66}} 
+\mbox{\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement}} {\bfseries current\+\_\+direction}
+\item 
+\mbox{\Hypertarget{door_8c_a53f0cf8d6c7426344a7336af4b06925a}\label{door_8c_a53f0cf8d6c7426344a7336af4b06925a}} 
+int {\bfseries current\+\_\+floor}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+file containing functions for door operations 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{door_8c_a4963f41066e7275dc76cd2f01cc2f53f}\label{door_8c_a4963f41066e7275dc76cd2f01cc2f53f}} 
+\index{door.c@{door.c}!door\_close@{door\_close}}
+\index{door\_close@{door\_close}!door.c@{door.c}}
+\doxysubsubsection{\texorpdfstring{door\_close()}{door\_close()}}
+{\footnotesize\ttfamily void door\+\_\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Close the door and set the {\ttfamily is\+\_\+door\+\_\+open} int to 0. 
+
+\mbox{\Hypertarget{door_8c_a07995a37239f2f93425857ba782c7e97}\label{door_8c_a07995a37239f2f93425857ba782c7e97}} 
+\index{door.c@{door.c}!door\_get\_status@{door\_get\_status}}
+\index{door\_get\_status@{door\_get\_status}!door.c@{door.c}}
+\doxysubsubsection{\texorpdfstring{door\_get\_status()}{door\_get\_status()}}
+{\footnotesize\ttfamily int door\+\_\+get\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetch door status. 
+
+\begin{DoxyReturn}{Returns}
+0 when door is closed
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+1 when door i open. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{door_8c_a2aa80a86d9f16ad440754a2c3a8f736a}\label{door_8c_a2aa80a86d9f16ad440754a2c3a8f736a}} 
+\index{door.c@{door.c}!door\_loop@{door\_loop}}
+\index{door\_loop@{door\_loop}!door.c@{door.c}}
+\doxysubsubsection{\texorpdfstring{door\_loop()}{door\_loop()}}
+{\footnotesize\ttfamily void door\+\_\+loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+calls {\ttfamily door\+\_\+open}, while {\ttfamily door\+\_\+keep\+\_\+open} is high calls {\ttfamily poll\+\_\+buttons}, {\ttfamily door\+\_\+keep\+\_\+open} and updates {\ttfamily hardware\+\_\+command\+\_\+stop\+\_\+light} calls {\ttfamily door\+\_\+close} when {\ttfamily door\+\_\+keep\+\_\+open} goes low 
+

@@ -1,0 +1,70 @@
+\hypertarget{door_8h}{}\doxysection{door.\+h File Reference}
+\label{door_8h}\index{door.h@{door.h}}
+
+
+Declaration of door functions.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{door_8h_a69ea650077db6523fe46a6d29fcbb36d}\label{door_8h_a69ea650077db6523fe46a6d29fcbb36d}} 
+int {\bfseries door\+\_\+keep\+\_\+open} ()
+\item 
+\mbox{\Hypertarget{door_8h_ab4ab52d12033d37e81f47bd9e7f2a724}\label{door_8h_ab4ab52d12033d37e81f47bd9e7f2a724}} 
+void \mbox{\hyperlink{door_8h_ab4ab52d12033d37e81f47bd9e7f2a724}{door\+\_\+open}} ()
+\begin{DoxyCompactList}\small\item\em Open the door and set the {\ttfamily is\+\_\+door\+\_\+open} int to 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{door_8h_a4963f41066e7275dc76cd2f01cc2f53f}{door\+\_\+close}} ()
+\begin{DoxyCompactList}\small\item\em Close the door and set the {\ttfamily is\+\_\+door\+\_\+open} int to 0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{door_8h_a07995a37239f2f93425857ba782c7e97}{door\+\_\+get\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em Fetch door status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{door_8h_a2aa80a86d9f16ad440754a2c3a8f736a}{door\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em calls {\ttfamily door\+\_\+open}, while {\ttfamily door\+\_\+keep\+\_\+open} is high calls {\ttfamily poll\+\_\+buttons}, {\ttfamily door\+\_\+keep\+\_\+open} and updates {\ttfamily hardware\+\_\+command\+\_\+stop\+\_\+light} calls {\ttfamily door\+\_\+close} when {\ttfamily door\+\_\+keep\+\_\+open} goes low \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of door functions. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{door_8h_a4963f41066e7275dc76cd2f01cc2f53f}\label{door_8h_a4963f41066e7275dc76cd2f01cc2f53f}} 
+\index{door.h@{door.h}!door\_close@{door\_close}}
+\index{door\_close@{door\_close}!door.h@{door.h}}
+\doxysubsubsection{\texorpdfstring{door\_close()}{door\_close()}}
+{\footnotesize\ttfamily void door\+\_\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Close the door and set the {\ttfamily is\+\_\+door\+\_\+open} int to 0. 
+
+\mbox{\Hypertarget{door_8h_a07995a37239f2f93425857ba782c7e97}\label{door_8h_a07995a37239f2f93425857ba782c7e97}} 
+\index{door.h@{door.h}!door\_get\_status@{door\_get\_status}}
+\index{door\_get\_status@{door\_get\_status}!door.h@{door.h}}
+\doxysubsubsection{\texorpdfstring{door\_get\_status()}{door\_get\_status()}}
+{\footnotesize\ttfamily int door\+\_\+get\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fetch door status. 
+
+\begin{DoxyReturn}{Returns}
+0 when door is closed
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+1 when door i open. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{door_8h_a2aa80a86d9f16ad440754a2c3a8f736a}\label{door_8h_a2aa80a86d9f16ad440754a2c3a8f736a}} 
+\index{door.h@{door.h}!door\_loop@{door\_loop}}
+\index{door\_loop@{door\_loop}!door.h@{door.h}}
+\doxysubsubsection{\texorpdfstring{door\_loop()}{door\_loop()}}
+{\footnotesize\ttfamily void door\+\_\+loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+calls {\ttfamily door\+\_\+open}, while {\ttfamily door\+\_\+keep\+\_\+open} is high calls {\ttfamily poll\+\_\+buttons}, {\ttfamily door\+\_\+keep\+\_\+open} and updates {\ttfamily hardware\+\_\+command\+\_\+stop\+\_\+light} calls {\ttfamily door\+\_\+close} when {\ttfamily door\+\_\+keep\+\_\+open} goes low 
+

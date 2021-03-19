@@ -1,0 +1,77 @@
+\hypertarget{orders_8c}{}\doxysection{orders.\+c File Reference}
+\label{orders_8c}\index{orders.c@{orders.c}}
+
+
+file containing functions for manipulating orders  
+
+
+{\ttfamily \#include \char`\"{}orders.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}door.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for orders.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{orders_8c_aa797ac9d46c8cacf6cbe69fbc954c4d9}{placeorder}} (int floor, \mbox{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}} direction)
+\begin{DoxyCompactList}\small\item\em does nothing if {\ttfamily hardware\+\_\+legal\+\_\+floor} is low otherwise calls @door\+\_\+loop if the order is from the current floor then returns if the order is from anothe floor the relevant order array is updated, if doors are closed and elevator is stationary sets movement towards order. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{orders_8c_a0099448e81c1428b301e5e85068a576b}{floor\+\_\+stop\+\_\+query}} ()
+\begin{DoxyCompactList}\small\item\em checks to see if there are orders further along the current path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{orders_8c_a6206e5203639ca23d84820e2ffb108a3}\label{orders_8c_a6206e5203639ca23d84820e2ffb108a3}} 
+void \mbox{\hyperlink{orders_8c_a6206e5203639ca23d84820e2ffb108a3}{clear\+\_\+all\+\_\+orders}} ()
+\begin{DoxyCompactList}\small\item\em Clears all orders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{orders_8c_a1046f1be4602c42ef4fe8de2ed351c66}\label{orders_8c_a1046f1be4602c42ef4fe8de2ed351c66}} 
+\mbox{\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement}} {\bfseries current\+\_\+direction}
+\item 
+\mbox{\Hypertarget{orders_8c_ab1cb5a3b17a40ee0f3ca79db5625b740}\label{orders_8c_ab1cb5a3b17a40ee0f3ca79db5625b740}} 
+\mbox{\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement}} {\bfseries previous\+\_\+direction}
+\item 
+\mbox{\Hypertarget{orders_8c_a53f0cf8d6c7426344a7336af4b06925a}\label{orders_8c_a53f0cf8d6c7426344a7336af4b06925a}} 
+int {\bfseries current\+\_\+floor}
+\item 
+\mbox{\Hypertarget{orders_8c_aef75f1916a4252232260f1fa061480da}\label{orders_8c_aef75f1916a4252232260f1fa061480da}} 
+int {\bfseries is\+\_\+door\+\_\+open}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+file containing functions for manipulating orders 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{orders_8c_a0099448e81c1428b301e5e85068a576b}\label{orders_8c_a0099448e81c1428b301e5e85068a576b}} 
+\index{orders.c@{orders.c}!floor\_stop\_query@{floor\_stop\_query}}
+\index{floor\_stop\_query@{floor\_stop\_query}!orders.c@{orders.c}}
+\doxysubsubsection{\texorpdfstring{floor\_stop\_query()}{floor\_stop\_query()}}
+{\footnotesize\ttfamily int floor\+\_\+stop\+\_\+query (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+checks to see if there are orders further along the current path 
+
+\begin{DoxyReturn}{Returns}
+0 if there are orders further along the current path, 1 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{orders_8c_aa797ac9d46c8cacf6cbe69fbc954c4d9}\label{orders_8c_aa797ac9d46c8cacf6cbe69fbc954c4d9}} 
+\index{orders.c@{orders.c}!placeorder@{placeorder}}
+\index{placeorder@{placeorder}!orders.c@{orders.c}}
+\doxysubsubsection{\texorpdfstring{placeorder()}{placeorder()}}
+{\footnotesize\ttfamily void placeorder (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{\mbox{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}}}]{direction }\end{DoxyParamCaption})}
+
+
+
+does nothing if {\ttfamily hardware\+\_\+legal\+\_\+floor} is low otherwise calls @door\+\_\+loop if the order is from the current floor then returns if the order is from anothe floor the relevant order array is updated, if doors are closed and elevator is stationary sets movement towards order. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & floor \\
+\hline
+\mbox{\texttt{ in}}  & {\em direction} & order type \\
+\hline
+\end{DoxyParams}

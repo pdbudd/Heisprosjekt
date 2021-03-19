@@ -1,0 +1,113 @@
+\hypertarget{controller_8h}{}\doxysection{controller.\+h File Reference}
+\label{controller_8h}\index{controller.h@{controller.h}}
+
+
+Declaration of functions for controller.  
+
+
+{\ttfamily \#include \char`\"{}hardware.\+h\char`\"{}}\newline
+Include dependency graph for controller.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{controller_8h_a4de85b1ad3af2a55a222033bc3dd8ff7}\label{controller_8h_a4de85b1ad3af2a55a222033bc3dd8ff7}} 
+void \mbox{\hyperlink{controller_8h_a4de85b1ad3af2a55a222033bc3dd8ff7}{poll\+\_\+buttons}} ()
+\begin{DoxyCompactList}\small\item\em checks that {\ttfamily hardware\+\_\+read\+\_\+stop\+\_\+signal} is low then proceeds to check whether any button is being pressed, in which case {\ttfamily placeorder} and {\ttfamily hardware\+\_\+command\+\_\+order\+\_\+light} are called \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a996eb0c0e2e06611283ca41f4201ee6d}{clear\+\_\+light}} (int floor)
+\begin{DoxyCompactList}\small\item\em calls {\ttfamily hardware\+\_\+command\+\_\+order\+\_\+light} for all {\ttfamily order\+\_\+types} at the floor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a77111a041e255880c1e51b8d720609a1}{order\+\_\+served}} (int floor)
+\begin{DoxyCompactList}\small\item\em deletes orders related to the floor served and calls {\ttfamily new\+\_\+direction} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{controller_8h_afd77151474c3e94d7c52fd75413ae3ca}\label{controller_8h_afd77151474c3e94d7c52fd75413ae3ca}} 
+void \mbox{\hyperlink{controller_8h_afd77151474c3e94d7c52fd75413ae3ca}{clear\+\_\+all\+\_\+order\+\_\+lights}} ()
+\begin{DoxyCompactList}\small\item\em clears all order lights \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{controller_8h_ab17ee675489c70d5b3b394827c5e6b17}\label{controller_8h_ab17ee675489c70d5b3b394827c5e6b17}} 
+void \mbox{\hyperlink{controller_8h_ab17ee675489c70d5b3b394827c5e6b17}{stop\+\_\+button}} ()
+\begin{DoxyCompactList}\small\item\em calls {\ttfamily hardware\+\_\+command\+\_\+movement} to stop, calls {\ttfamily clear\+\_\+all\+\_\+orders} {\ttfamily clear\+\_\+all\+\_\+order\+\_\+lights}. Then calls {\ttfamily door\+\_\+loop} if elevator is at a floor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_aeb6cf1d5ceadebc8661fc608f7d26f2a}{floor\+\_\+reached}} (int f)
+\begin{DoxyCompactList}\small\item\em checks to see if there are orders it should stop for, in which case {\ttfamily hardware\+\_\+command\+\_\+movement} is called to stop, {\ttfamily door\+\_\+loop} is called and {\ttfamily order\+\_\+served} is called. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller_8h_a8c6f81358a42813af8118068ccbabec5}{new\+\_\+direction}} ()
+\begin{DoxyCompactList}\small\item\em Sets elevator motion to same direction as before if there are more orders along the path it was travelling, otherwise sets elevator motion in opposite direction of previous if there are orders to serve there, otherwise sets motion to stopped. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{controller_8h_abb37376b43f28551cd6c62d268c3918d}{initialise}} ()
+\begin{DoxyCompactList}\small\item\em calls {\ttfamily hardware\+\_\+command\+\_\+movement} to set movement up, when {\ttfamily hardware\+\_\+read\+\_\+floor\+\_\+sensor} returns 1 the function returns the floor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of functions for controller. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{controller_8h_a996eb0c0e2e06611283ca41f4201ee6d}\label{controller_8h_a996eb0c0e2e06611283ca41f4201ee6d}} 
+\index{controller.h@{controller.h}!clear\_light@{clear\_light}}
+\index{clear\_light@{clear\_light}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{clear\_light()}{clear\_light()}}
+{\footnotesize\ttfamily void clear\+\_\+light (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+calls {\ttfamily hardware\+\_\+command\+\_\+order\+\_\+light} for all {\ttfamily order\+\_\+types} at the floor 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & floor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{controller_8h_aeb6cf1d5ceadebc8661fc608f7d26f2a}\label{controller_8h_aeb6cf1d5ceadebc8661fc608f7d26f2a}} 
+\index{controller.h@{controller.h}!floor\_reached@{floor\_reached}}
+\index{floor\_reached@{floor\_reached}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{floor\_reached()}{floor\_reached()}}
+{\footnotesize\ttfamily void floor\+\_\+reached (\begin{DoxyParamCaption}\item[{int}]{f }\end{DoxyParamCaption})}
+
+
+
+checks to see if there are orders it should stop for, in which case {\ttfamily hardware\+\_\+command\+\_\+movement} is called to stop, {\ttfamily door\+\_\+loop} is called and {\ttfamily order\+\_\+served} is called. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & floor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{controller_8h_abb37376b43f28551cd6c62d268c3918d}\label{controller_8h_abb37376b43f28551cd6c62d268c3918d}} 
+\index{controller.h@{controller.h}!initialise@{initialise}}
+\index{initialise@{initialise}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{initialise()}{initialise()}}
+{\footnotesize\ttfamily int initialise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+calls {\ttfamily hardware\+\_\+command\+\_\+movement} to set movement up, when {\ttfamily hardware\+\_\+read\+\_\+floor\+\_\+sensor} returns 1 the function returns the floor. 
+
+\begin{DoxyReturn}{Returns}
+the integer floor number
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+failure to initialise will never return anything 
+\end{DoxyWarning}
+\mbox{\Hypertarget{controller_8h_a8c6f81358a42813af8118068ccbabec5}\label{controller_8h_a8c6f81358a42813af8118068ccbabec5}} 
+\index{controller.h@{controller.h}!new\_direction@{new\_direction}}
+\index{new\_direction@{new\_direction}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{new\_direction()}{new\_direction()}}
+{\footnotesize\ttfamily void new\+\_\+direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets elevator motion to same direction as before if there are more orders along the path it was travelling, otherwise sets elevator motion in opposite direction of previous if there are orders to serve there, otherwise sets motion to stopped. 
+
+\mbox{\Hypertarget{controller_8h_a77111a041e255880c1e51b8d720609a1}\label{controller_8h_a77111a041e255880c1e51b8d720609a1}} 
+\index{controller.h@{controller.h}!order\_served@{order\_served}}
+\index{order\_served@{order\_served}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{order\_served()}{order\_served()}}
+{\footnotesize\ttfamily void order\+\_\+served (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+deletes orders related to the floor served and calls {\ttfamily new\+\_\+direction} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & floor \\
+\hline
+\end{DoxyParams}

@@ -1,7 +1,6 @@
 /**
 * @file
-* @brief file for functions pertaining to the control of the machine as well as
-* retrieving information about the state of the machine.
+* @brief Declaration of functions for controller
 */
 
 #include "hardware.h"
@@ -14,7 +13,7 @@
 void poll_buttons();
 
 /**
-* @brief calls ©hardware_command_order_light for all @c order_types at the floor
+* @brief calls @c hardware_command_order_light for all @c order_types at the floor
 *
 * @param[in] floor floor
 */

@@ -1,3 +1,8 @@
+/**
+* @file
+* @brief Declaration of order functions and arrays
+*/
+
 #include "hardware.h"
 
 /**
