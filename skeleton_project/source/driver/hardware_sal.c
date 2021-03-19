@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief file containing functions for setting and reading hardware
+*/
 #include "hardware.h"
 #include "channels.h"
 #include "io.h"

@@ -1,9 +1,12 @@
+/**
+* @file
+* @brief main file that initialises elevator and runs operation loop
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 #include "hardware.h"
 #include "orders.h"
-#include "initialise.h"
 #include "controller.h"
 #include "door.h"
 
@@ -22,9 +25,7 @@ int main(){
         exit(1);
     }
     current_floor = initialise();
-    printf("initialised at %d floor\n", current_floor);
     current_direction = HARDWARE_MOVEMENT_STOP;
-      printf("%d", current_direction);
 
     while(1){
         if(hardware_read_stop_signal())

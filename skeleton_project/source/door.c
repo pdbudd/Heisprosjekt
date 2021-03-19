@@ -1,3 +1,9 @@
+/**
+* @file
+* @brief file containing functions for door operations
+*/
+
+
 #include "door.h"
 #include "controller.h"
 #include "hardware.h"

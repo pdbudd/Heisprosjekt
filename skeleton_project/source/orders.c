@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief file containing functions for manipulating orders
+*/
 #include "orders.h"
 #include "hardware.h"
 #include "door.h"
@@ -80,67 +84,6 @@ int floor_stop_query()
     }
   }
   return 1;
-}
-
-void new_direction()
-{
-  switch (previous_direction)
-  {
-    case HARDWARE_MOVEMENT_UP:
-    printf("was going up\n");
-    printf("checking orders above\n");
-    for(int j = current_floor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
-    {
-      if(up_orders[j] || down_orders[j] || inside_orders[j])
-      {
-      printf("order found\n");
-      hardware_command_movement(HARDWARE_MOVEMENT_UP);
-      current_direction = HARDWARE_MOVEMENT_UP;
-      return;
-      }
-    }
-    printf("checking orders below\n");
-    for(int k = 0; k < current_floor +1; k++)
-    {
-      if(up_orders[k] || down_orders[k] || inside_orders[k])
-      {
-        printf("order found\n");
-        hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-        current_direction = HARDWARE_MOVEMENT_DOWN;
-        return;
-      }
-    }
-    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    current_direction = HARDWARE_MOVEMENT_STOP;
-    return;
-    case HARDWARE_MOVEMENT_DOWN:
-    for(int j = 0; j < current_floor; j++)
-    {
-      if(up_orders[j] || down_orders[j] || inside_orders[j])
-      {
-      hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-      current_direction = HARDWARE_MOVEMENT_DOWN;
-      printf("going down\n");
-      return;
-      }
-    }
-    for(int k = HARDWARE_NUMBER_OF_FLOORS - 1; k > current_floor; k--)
-    {
-      if(up_orders[k] || down_orders[k] || inside_orders[k])
-      {
-      hardware_command_movement(HARDWARE_MOVEMENT_UP);
-      current_direction = HARDWARE_MOVEMENT_UP;
-      printf("going up\n");
-      return;
-      }
-    }
-    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    current_direction = HARDWARE_MOVEMENT_STOP;
-    printf("stopping\n");
-    return;
-    default:;
-  }
-  return;
 }
 
 void clear_all_orders()

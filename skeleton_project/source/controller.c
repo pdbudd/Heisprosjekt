@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief file containing functions determining the behaviour of the elevator
+*/
 #include "controller.h"
 #include "hardware.h"
 #include "orders.h"
@@ -55,7 +59,6 @@ void floor_reached(int f)
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
-    door_close();
     order_served(f);
     return;
   }
@@ -66,7 +69,6 @@ void floor_reached(int f)
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     current_direction = HARDWARE_MOVEMENT_STOP;
     door_loop();
-    door_close();
     order_served(f);
     return;
   }
@@ -88,6 +90,59 @@ void floor_reached(int f)
   return;
 }
 
+void new_direction()
+{
+  switch (previous_direction)
+  {
+    case HARDWARE_MOVEMENT_UP:
+    for(int j = current_floor; j<HARDWARE_NUMBER_OF_FLOORS; j++)
+    {
+      if(up_orders[j] || down_orders[j] || inside_orders[j])
+      {
+      hardware_command_movement(HARDWARE_MOVEMENT_UP);
+      current_direction = HARDWARE_MOVEMENT_UP;
+      return;
+      }
+    }
+    for(int k = 0; k < current_floor +1; k++)
+    {
+      if(up_orders[k] || down_orders[k] || inside_orders[k])
+      {
+        hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+        current_direction = HARDWARE_MOVEMENT_DOWN;
+        return;
+      }
+    }
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
+    return;
+    case HARDWARE_MOVEMENT_DOWN:
+    for(int j = 0; j < current_floor; j++)
+    {
+      if(up_orders[j] || down_orders[j] || inside_orders[j])
+      {
+      hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+      current_direction = HARDWARE_MOVEMENT_DOWN;
+      return;
+      }
+    }
+    for(int k = HARDWARE_NUMBER_OF_FLOORS - 1; k > current_floor; k--)
+    {
+      if(up_orders[k] || down_orders[k] || inside_orders[k])
+      {
+      hardware_command_movement(HARDWARE_MOVEMENT_UP);
+      current_direction = HARDWARE_MOVEMENT_UP;
+      return;
+      }
+    }
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    current_direction = HARDWARE_MOVEMENT_STOP;
+    return;
+    default:;
+  }
+  return;
+}
+
 void clear_light(int floor)
 {
   hardware_command_order_light(floor, HARDWARE_ORDER_INSIDE, 0);
@@ -101,7 +156,6 @@ void order_served(int floor)
   down_orders[floor] = 0;
   up_orders[floor] = 0;
   inside_orders[floor] = 0;
-  is_door_open = 0;
   new_direction();
   return;
 }
@@ -130,8 +184,27 @@ void stop_button()
   hardware_command_stop_light(1);
   while(hardware_read_stop_signal())
   {
-      hardware_command_stop_light(hardware_read_stop_signal());
     door_loop();
   }
   return;
+}
+
+#include "hardware.h"
+
+int initialise()
+{
+    hardware_command_movement(HARDWARE_MOVEMENT_UP);
+    while (1)
+    {
+      for (int f=0; f<HARDWARE_NUMBER_OF_FLOORS; f++)
+      {
+        if(hardware_read_floor_sensor(f))
+        {
+            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+            hardware_command_floor_indicator_on(f);
+            return f;
+        }
+      }
+    }
+    return -1;
 }
